@@ -5,11 +5,11 @@ node {
         notifyBuild()
         stage('Checkout') {
             git branch: 'master',
-                url: 'https://github.com/Dgadavin/devops-course-itea.git'
+                url: 'https://github.com/MatviyivR/jenkins.git'
 
         }
-        stage('Print Hello') {
-            sh 'echo Hello world'
+        stage('Build docker') {
+            sh 'docker build -t new-nginx -f Dockerfile.nginx .'
         }
         stage('Run the tests') {
             sh 'echo "Hello. here is tests"'
@@ -49,3 +49,4 @@ def notifyBuild(String buildStatus = 'STARTED') {
   // Send notifications
   // slackSend (channel: '#Your Slack channel', color: colorCode, message: summary)
 }
+
