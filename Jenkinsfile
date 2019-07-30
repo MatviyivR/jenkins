@@ -4,7 +4,7 @@ node {
         deleteDir() // Clean the workspace
         notifyBuild()
         stage('Checkout') {
-            git branch: 'master',
+            git branch: 'qa',
                 url: 'https://github.com/MatviyivR/jenkins.git'
 
         }
