@@ -4,13 +4,19 @@ node {
         deleteDir() // Clean the workspace
         notifyBuild()
         stage('Checkout') {
-            git branch: 'master',
+            git branch: 'qa',
                 url: 'https://github.com/MatviyivR/jenkins.git'
 
         }
-        stage('Build docker') {
-            sh 'docker build -t new-nginx -f Dockerfile.nginx .'
-        }
+      // stage('Build docker') {
+       // sh 'docker build -t new-nginx -f Dockerfile .'
+        // }
+stage('docker build/push') {
+     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub')
+     {
+       def app = docker.build("ruslanmatviyiv/ownexp", '.').push()
+           }
+}
         stage('Run the tests') {
             sh 'echo "Hello. here is tests"'
         }
