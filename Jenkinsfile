@@ -8,9 +8,9 @@ node {
                 url: 'https://github.com/MatviyivR/jenkins.git'
 
         }
-       stage('Build docker') {
-         sh 'docker build -t new-nginx -f Dockerfile .'
-         }
+      // stage('Build docker') {
+       // sh 'docker build -t new-nginx -f Dockerfile .'
+        // }
 stage('docker build/push') {
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub')
      {
