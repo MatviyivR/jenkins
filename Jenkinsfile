@@ -13,8 +13,8 @@ node {
         // }
 stage('docker build/push') {
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub')
-     { def dockerfile = 'Dockerfile.nginx'
-       def app = docker.build("matviyivr/jenkins", "-f $(dockerfile)"'.').push()
+     {
+       def app = docker.build("matviyivr/jenkins/Dockerfile.nginx", '.').push()
            }
 }
         stage('Run the tests') {
