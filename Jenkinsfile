@@ -12,8 +12,9 @@ node {
         // sh 'docker build -t new-nginx -f Dockerfile.nginx .'
         // }
 stage('docker build/push') {
-     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-       def app = docker.build("matviyivr/jenkins", '.').push()
+     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub')
+     { def dockerfile = 'Dockerfile.nginx'
+       def app = docker.build("matviyivr/jenkins", "-f $(dockerfile)"'.').push()
            }
 }
         stage('Run the tests') {
